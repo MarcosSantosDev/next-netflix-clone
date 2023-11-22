@@ -1,11 +1,9 @@
 import Head from 'next/head';
 import { getSession, signOut } from 'next-auth/react';
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { GetServerSideProps } from 'next';
 import useCurrentUser from '@/hooks/useCurrentUser';
 
-export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext,
-) => {
+export const getServerSideProps: GetServerSideProps = async context => {
   const session = await getSession(context);
 
   if (!session) {
