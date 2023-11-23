@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/router';
 import axios from 'axios';
+
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 
@@ -12,8 +12,6 @@ const Auth: React.FC = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [variant, setVariant] = React.useState<'login' | 'register'>('login');
-
-  const router = useRouter();
 
   const toggleVariant = React.useCallback(() => {
     setVariant(state => {
@@ -26,15 +24,12 @@ const Auth: React.FC = () => {
       await signIn('credentials', {
         email,
         password,
-        redirect: false,
-        callbackUrl: '/',
+        callbackUrl: '/profiles',
       });
-
-      router.push('/');
     } catch (error) {
       console.error(error);
     }
-  }, [name, email, password, router]);
+  }, [name, email, password]);
 
   const register = React.useCallback(async () => {
     try {
@@ -111,7 +106,7 @@ const Auth: React.FC = () => {
                   transition
                   hover:opacity-80
                 "
-                onClick={() => signIn('google', { callbackUrl: '/' })}
+                onClick={() => signIn('google', { callbackUrl: '/profiles' })}
               >
                 <FcGoogle size={30} />
               </div>
@@ -128,7 +123,7 @@ const Auth: React.FC = () => {
                   transition
                   hover:opacity-80
                 "
-                onClick={() => signIn('github', { callbackUrl: '/' })}
+                onClick={() => signIn('github', { callbackUrl: '/profiles' })}
               >
                 <FaGithub size={30} />
               </div>
