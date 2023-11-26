@@ -5,7 +5,7 @@ import axios from 'axios';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 
-import Input from '@/components/Input';
+import { Input } from '@/components/form';
 
 const Auth: React.FC = () => {
   const [name, setName] = React.useState('');
